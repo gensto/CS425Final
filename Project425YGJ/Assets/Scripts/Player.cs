@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 
     // Component Variables
     Rigidbody2D body;
+    SpriteRenderer spRenderer;
 
     // Bullet Variables
     [SerializeField]
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        spRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -52,6 +54,13 @@ public class Player : MonoBehaviour
         else
         {
             body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
+        }
+        if (horizontal < 0)
+        {
+            spRenderer.flipX = true;
+        } else if (horizontal > 0)
+        {
+            spRenderer.flipX = false;
         }
 
     }

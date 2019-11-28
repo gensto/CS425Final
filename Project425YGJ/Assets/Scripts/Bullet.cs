@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    int horizontal = 1;
-    int vertical = 1;
+    int vertical = -1;
 
     [SerializeField]
     float bulletSpeed = 0.4f;
@@ -18,35 +17,30 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        this.transform.Translate(new Vector2(horizontal * Time.deltaTime * bulletSpeed, vertical * Time.deltaTime * bulletSpeed));
+        this.transform.Translate(new Vector2(0, vertical * Time.deltaTime * bulletSpeed));
     }
 
     public void ShootLeft()
     {
-        horizontal = -1;
-        vertical = 0;
+        transform.Rotate(new Vector3(0, 0, 270));
     }
 
     public void ShootRight()
     {
-        horizontal = 1;
-        vertical = 0;
+        transform.Rotate(new Vector3(0, 0, 90));
     }
 
     public void ShootUp()
     {
-        horizontal = 0;
-        vertical = 1;
+        transform.Rotate(new Vector3(0, 0, 180));
     }
 
     public void ShootDown()
     {
-        horizontal = 0;
-        vertical = -1;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 }
