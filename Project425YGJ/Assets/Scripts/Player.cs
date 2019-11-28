@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     // Movement variables
     [SerializeField] // Serialize Field will make it private but visible in the inspector
     float runSpeed = 20.0f;
+    [SerializeField]
+    float diagonalPenalty = 0.7f;
     float horizontal;
     float vertical;
 
@@ -45,8 +47,9 @@ public class Player : MonoBehaviour
     {
         if (horizontal != 0 && vertical != 0) // Check for diagonal movement
         {
-            // No diagonal movement.
-        } else
+            body.velocity = new Vector2(horizontal * runSpeed * diagonalPenalty, vertical * runSpeed * diagonalPenalty);
+        }
+        else
         {
             body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
         }
