@@ -80,13 +80,12 @@ public class Player : MonoBehaviour
         }
         if (horizontal < 0)
         {
-<<<<<<< Updated upstream
-        } else if (horizontal > 0)
-=======
+        }
+        else if (horizontal > 0)
+        { 
             spRenderer.flipX = true;
         }
         else if (horizontal > 0)
->>>>>>> Stashed changes
         {
         }
 
