@@ -41,11 +41,12 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Bullet")
-        {
-            Debug.Log("Hit bullet");
-            return;
-        }
         Destroy(gameObject);
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Hit enemy");
+
+        }
     }
 }
