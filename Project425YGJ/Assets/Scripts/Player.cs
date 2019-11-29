@@ -78,16 +78,6 @@ public class Player : MonoBehaviour
         {
             body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
         }
-        if (horizontal < 0)
-        {
-        }
-        else if (horizontal > 0)
-        { 
-            spRenderer.flipX = true;
-        }
-        else if (horizontal > 0)
-        {
-        }
 
     }
 
