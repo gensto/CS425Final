@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
 
     // Bullet Variables
     [SerializeField]
-    Bullet bulletPrefab;
+    public Bullet bulletPrefab;
     [SerializeField]
     float bulletSpawnOffset = 0.2f; // how far off the player to spawn a bullet
 
@@ -80,7 +80,13 @@ public class Player : MonoBehaviour
         }
         if (horizontal < 0)
         {
+<<<<<<< Updated upstream
         } else if (horizontal > 0)
+=======
+            spRenderer.flipX = true;
+        }
+        else if (horizontal > 0)
+>>>>>>> Stashed changes
         {
         }
 
