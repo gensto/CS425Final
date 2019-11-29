@@ -16,6 +16,11 @@ public class Player : MonoBehaviour
     // Component Variables
     Rigidbody2D body;
     SpriteRenderer spRenderer;
+    Animator animator;
+
+    //Animator paramaters
+
+
 
     // Bullet Variables
     [SerializeField]
@@ -29,6 +34,7 @@ public class Player : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         spRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -36,11 +42,24 @@ public class Player : MonoBehaviour
     {
         GetInput();
         HandleShooting();
+
+        //animator.SetFloat("Strafe", h);
+        //animator.SetBool("Fire", fire);
     }
 
     void FixedUpdate()
     {
         HandleMovement();
+
+        if (body.velocity.y == 0 && body.velocity.x == 0)
+        {
+            //Debug.Log("Not moving");
+            animator.SetBool("moving", false);
+        } else
+        {
+            //Debug.Log("moving");
+            animator.SetBool("moving", true);
+        }
     }
 
     /**
@@ -58,10 +77,8 @@ public class Player : MonoBehaviour
         }
         if (horizontal < 0)
         {
-            spRenderer.flipX = true;
         } else if (horizontal > 0)
         {
-            spRenderer.flipX = false;
         }
 
     }
@@ -71,33 +88,48 @@ public class Player : MonoBehaviour
      */
     void HandleShooting()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
+            animator.SetBool("shootingBack", true);
+            animator.SetBool("shootingSide", false);
             // Instantiate the projectile at the position and rotation of this transform
             Bullet clone = Instantiate(bulletPrefab, transform.position + (Vector3.up * bulletSpawnOffset), transform.rotation);
             // Set the direction of bullet
             clone.ShootUp();
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.DownArrow))
         {
+            animator.SetBool("shootingBack", false);
+            animator.SetBool("shootingSide", false);
             // Instantiate the projectile at the position and rotation of this transform
             Bullet clone = Instantiate(bulletPrefab, transform.position - (Vector3.up * bulletSpawnOffset), transform.rotation);
             // Set the direction of bullet
             clone.ShootDown();
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow))
         {
+            animator.SetBool("shootingBack", false);
+            animator.SetBool("shootingSide", true);
+            spRenderer.flipX = false;
             // Instantiate the projectile at the position and rotation of this transform
             Bullet clone = Instantiate(bulletPrefab, transform.position + (Vector3.left * bulletSpawnOffset), transform.rotation);
             // Set the direction of bullet
             clone.ShootLeft();
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
+            animator.SetBool("shootingBack", false);
+            animator.SetBool("shootingSide", true);
             // Instantiate the projectile at the position and rotation of this transform
             Bullet clone = Instantiate(bulletPrefab, transform.position - (Vector3.left * bulletSpawnOffset), transform.rotation);
             // Set the direction of bullet
             clone.ShootRight();
+            spRenderer.flipX = true;
+        }
+        else
+        {
+            animator.SetBool("shootingBack", false);
+            animator.SetBool("shootingSide", false);
         }
     }
 
