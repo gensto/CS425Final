@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     // Bullet Variables
     [SerializeField]
     Bullet bulletPrefab;
+    [SerializeField]
     float bulletSpawnOffset = 0.2f; // how far off the player to spawn a bullet
 
 
