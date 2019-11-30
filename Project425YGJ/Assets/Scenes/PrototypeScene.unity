@@ -2701,6 +2701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8fca1507fc39d46a4908eab789673b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isShotByPlayer: 0
 --- !u!1 &1365349826
 GameObject:
   m_ObjectHideFlags: 0
@@ -2814,6 +2815,7 @@ GameObject:
   - component: {fileID: 1639752612}
   - component: {fileID: 1639752611}
   - component: {fileID: 1639752613}
+  - component: {fileID: 1639752614}
   m_Layer: 0
   m_Name: DustStorm1 (1)
   m_TagString: Enemy
@@ -2905,6 +2907,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1639752614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1639752610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8fca1507fc39d46a4908eab789673b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isShotByPlayer: 0
 --- !u!1 &1828630962
 GameObject:
   m_ObjectHideFlags: 0

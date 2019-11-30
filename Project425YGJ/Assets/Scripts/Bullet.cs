@@ -46,7 +46,7 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("Hit enemy");
-
+            collision.gameObject.GetComponent<EnemyLevel1>().isShotByPlayer = true;
         }
     }
 }
