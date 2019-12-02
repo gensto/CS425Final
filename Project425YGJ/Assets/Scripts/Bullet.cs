@@ -8,6 +8,10 @@ public class Bullet : MonoBehaviour
 
     [SerializeField]
     float bulletSpeed = 0.4f;
+
+    [Tooltip("How the bullet will affect a gameobjects health when it hits.")][SerializeField]
+    int healthAffect = -1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,11 +46,18 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(gameObject);
+        Health objectHealth = collision.gameObject.GetComponent<Health>();
 
         if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("Hit enemy");
             collision.gameObject.GetComponent<EnemyLevel1>().isShotByPlayer = true;
+        }
+
+        // If a health component is present affect their health
+        if (objectHealth != null)
+        {
+            objectHealth.addHealth(healthAffect);
         }
     }
 }

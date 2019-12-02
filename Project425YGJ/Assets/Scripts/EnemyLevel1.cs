@@ -15,15 +15,19 @@ public class EnemyLevel1 : MonoBehaviour
     float distanceTraveled = 0;
     bool goLeft = true;
 
-	// Use this for initialization
-	void Start ()
+    Health myHealth;
+
+    // Use this for initialization
+    void Start ()
     {
         p = GameObject.Find("Player");
         goLeft = (Random.value > 0.5f);
 
         distanceTraveled = goLeft ? 3 : 0;
 
-        Debug.Log("Go left: " + goLeft);
+        myHealth = GetComponent<Health>();
+
+        //Debug.Log("Go left: " + goLeft);
     }
 
     void BuildBehaviorTree()
@@ -69,7 +73,14 @@ public class EnemyLevel1 : MonoBehaviour
             chaseDownTimer();
         }
         //patrol();
-	}
+
+
+
+        if (myHealth.getHealth() <= 0)
+        {
+            Debug.Log("Dead");
+        }
+    }
 
     public bool isPlayerNear()
     {
@@ -85,7 +96,7 @@ public class EnemyLevel1 : MonoBehaviour
 
     public void chasePlayer()
     {
-        Debug.Log("Move towards playerrrr");
+        //Debug.Log("Move towards playerrrr");
         float step = speed * Time.deltaTime;
         this.transform.position = Vector2.MoveTowards(this.transform.position, p.transform.position, step);
     }
@@ -94,11 +105,11 @@ public class EnemyLevel1 : MonoBehaviour
     public void chaseDownTimer()
     {
         chaseTimer -= Time.deltaTime;
-        Debug.Log("Chasing enemy");
+        //Debug.Log("Chasing enemy");
 
         if(chaseTimer <= 0)
         {
-            Debug.Log("No longer chasing");
+            //Debug.Log("No longer chasing");
             isShotByPlayer = false;
             chaseTimer = 3.0f;
         }
@@ -183,7 +194,7 @@ public class ChasePlayerNode : MyTaskNode
     //Chases enemy
     public override bool run()
     { 
-        Debug.Log("chasssing player");
+        //Debug.Log("chasssing player");
         e.chasePlayer();
         return true;
     }
@@ -207,7 +218,7 @@ public class CheckIfEnemyIsNearNode : MyTaskNode
         }
         else
         {
-            Debug.Log("Enemy is null");
+            //Debug.Log("Enemy is null");
             return false;
         }
     }

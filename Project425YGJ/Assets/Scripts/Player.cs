@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     Rigidbody2D body;
     SpriteRenderer spRenderer;
     Animator animator;
+    Health myHealth;
 
     //Animator paramaters
 
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         spRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        myHealth = GetComponent<Health>();
     }
 
     // Update is called once per frame
@@ -45,6 +47,13 @@ public class Player : MonoBehaviour
     {
         GetInput();
         HandleShooting();
+
+
+        if (myHealth.getHealth() <= 0)
+        {
+            Debug.Log("Dead");
+        }
+
 
         //animator.SetFloat("Strafe", h);
         //animator.SetBool("Fire", fire);
@@ -131,6 +140,7 @@ public class Player : MonoBehaviour
             }
             else
             {
+                nextFire = 0;
                 animator.SetBool("shootingBack", false);
                 animator.SetBool("shootingSide", false);
             }
