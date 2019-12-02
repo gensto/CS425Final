@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     float bulletSpeed = 0.4f;
 
     [Tooltip("How the bullet will affect a gameobjects health when it hits.")][SerializeField]
-    int healthAffect = -1;
+    int healthAffect = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -57,7 +57,7 @@ public class Bullet : MonoBehaviour
         // If a health component is present affect their health
         if (objectHealth != null)
         {
-            objectHealth.addHealth(healthAffect);
+            objectHealth.subtractHealth(healthAffect);
         }
     }
 }

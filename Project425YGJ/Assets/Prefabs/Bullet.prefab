@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 5
-  healthAffect: -1
+  healthAffect: 1
 --- !u!50 &3891679212103590330
 Rigidbody2D:
   serializedVersion: 4
