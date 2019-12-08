@@ -6,6 +6,8 @@ public class EnemyLevel1 : MonoBehaviour
 {
     GameObject p = null;
     float speed = 1f;
+    [SerializeField]
+    int hitDamage = 1;
     public bool isShotByPlayer = false;
 
     float chaseTimer = 3.0f;
@@ -141,6 +143,23 @@ public class EnemyLevel1 : MonoBehaviour
         if (distanceTraveled > 3)
         {
             goLeft = true;
+        }
+    }
+
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Health objectHealth = collision.gameObject.GetComponent<Health>();
+
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("Hit player");
+            // If a health component is present affect their health
+            if (objectHealth != null)
+            {
+                objectHealth.subtractHealth(hitDamage);
+            }
         }
     }
 
