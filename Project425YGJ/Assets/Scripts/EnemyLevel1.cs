@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyLevel1 : MonoBehaviour
 {
     GameObject p = null;
-    float speed = 1f;
+    float speed = 2f;
     [SerializeField]
     int hitDamage = 1;
     public bool isShotByPlayer = false;
@@ -88,7 +88,7 @@ public class EnemyLevel1 : MonoBehaviour
     {
         float distAwayFromPlayer = Vector2.Distance(p.transform.position, this.transform.position);
 
-        if(distAwayFromPlayer > 3.0f)
+        if(distAwayFromPlayer > 4.0f)
         {
             return false;
         }
