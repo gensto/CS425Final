@@ -1899,7 +1899,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
-      m_ColliderType: 1
+      m_ColliderType: 0
   - first: {x: 0, y: 5, z: 0}
     second:
       m_TileIndex: 1
@@ -3081,7 +3081,7 @@ PrefabInstance:
     - target: {fileID: 8378395089142513046, guid: b91a6c74248987f45aaff6d87e8afe69,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.56
       objectReference: {fileID: 0}
     - target: {fileID: 8378395089142513046, guid: b91a6c74248987f45aaff6d87e8afe69,
         type: 3}
