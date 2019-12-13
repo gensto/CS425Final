@@ -243,6 +243,7 @@ public class CheckIfEnemyIsNearNode : MyTaskNode
     }
 }
 
+/*
 public class MySelectorNode : MyTaskNode
 {
     public override bool run()
@@ -291,3 +292,4 @@ public class MyTaskNode
         children.Add(node);
     }
 }
+*/

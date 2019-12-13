@@ -17,7 +17,7 @@ public class Level1Manager : MonoBehaviour
         enemies = GameObject.Find("Enemies");
         key = GameObject.Find("Key");
         door = GameObject.Find("Door");
-        door.SetActive(false);
+        //door.SetActive(false);
         key.SetActive(false);
     }
 
