@@ -7,6 +7,7 @@ public class Key : MonoBehaviour
     GameObject level1Manager;
     [SerializeField]
     GameObject door;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,7 @@ public class Key : MonoBehaviour
         //player picks up key
         if (collision.gameObject.tag == "Player")
         {
+           
             level1Manager.GetComponent<Level1Manager>().obtainedKey = true;
             level1Manager.GetComponent<Level1Manager>().unlockDoor = true;
             door = GameObject.Find("Door");
