@@ -152,11 +152,11 @@ public class EnemyLevel1 : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Health objectHealth = collision.gameObject.GetComponent<Health>();
-
+        Vector3 moveDirection = _rigidbody.transform.position - collision.transform.position;
+        _rigidbody.AddForce(moveDirection.normalized * 500f);
         if (collision.gameObject.tag == "Player")
         {
-            Vector3 moveDirection = _rigidbody.transform.position - collision.transform.position;
-            _rigidbody.AddForce(moveDirection.normalized * 1000f);
+
 
 
             Debug.Log("Hit player");
