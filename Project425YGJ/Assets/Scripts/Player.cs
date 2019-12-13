@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
                 animator.SetBool("shootingBack", true);
                 animator.SetBool("shootingSide", false);
                 // Instantiate the projectile at the position and rotation of this transform
-                Bullet clone = Instantiate(bulletPrefab, transform.position + (Vector3.up * bulletSpawnOffset), transform.rotation);
+                Bullet clone = Instantiate(bulletPrefab, transform.position + (Vector3.up * bulletSpawnOffset * 1.25f), transform.rotation);
                 // Set the direction of bullet
                 clone.ShootUp();
             }
@@ -114,7 +114,7 @@ public class Player : MonoBehaviour
                 animator.SetBool("shootingBack", false);
                 animator.SetBool("shootingSide", false);
                 // Instantiate the projectile at the position and rotation of this transform
-                Bullet clone = Instantiate(bulletPrefab, transform.position - (Vector3.up * bulletSpawnOffset), transform.rotation);
+                Bullet clone = Instantiate(bulletPrefab, transform.position - (Vector3.up * bulletSpawnOffset * 1.25f), transform.rotation);
                 // Set the direction of bullet
                 clone.ShootDown();
             }

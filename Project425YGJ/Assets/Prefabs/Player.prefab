@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8378395089142513047}
   - component: {fileID: 8378395089142513040}
   - component: {fileID: 8378395089142513045}
-  - component: {fileID: 8378395089142513044}
   - component: {fileID: 8378395089142513051}
   - component: {fileID: 114256331483017900}
+  - component: {fileID: 5694346942113761187}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -122,32 +122,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &8378395089142513044
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8378395089142513041}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.011063844, y: 0.065027}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.61583, y: 1.1363293}
-  m_EdgeRadius: 0
 --- !u!95 &8378395089142513051
 Animator:
   serializedVersion: 3
@@ -180,3 +154,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 4
+  flashTime: 0
+  mRenderer: {fileID: 0}
+--- !u!68 &5694346942113761187
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8378395089142513041}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0.24986696, y: -0.52017576}
+  - {x: -0.32468578, y: -0.5417083}
+  - {x: -0.29972008, y: 0.6429952}
+  - {x: -0.2125116, y: 0.6429952}
+  - {x: 0.27455336, y: 0.628788}
+  - {x: 0.2533255, y: -0.5175187}

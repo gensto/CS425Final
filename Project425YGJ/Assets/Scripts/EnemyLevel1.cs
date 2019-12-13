@@ -5,7 +5,9 @@ using UnityEngine;
 public class EnemyLevel1 : MonoBehaviour
 {
     GameObject p = null;
-    float speed = 1f;
+    float speed = 2f;
+    [SerializeField]
+    int hitDamage = 1;
     public bool isShotByPlayer = false;
 
     float chaseTimer = 3.0f;
@@ -86,7 +88,7 @@ public class EnemyLevel1 : MonoBehaviour
     {
         float distAwayFromPlayer = Vector2.Distance(p.transform.position, this.transform.position);
 
-        if(distAwayFromPlayer > 3.0f)
+        if(distAwayFromPlayer > 4.0f)
         {
             return false;
         }
@@ -141,6 +143,23 @@ public class EnemyLevel1 : MonoBehaviour
         if (distanceTraveled > 3)
         {
             goLeft = true;
+        }
+    }
+
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Health objectHealth = collision.gameObject.GetComponent<Health>();
+
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("Hit player");
+            // If a health component is present affect their health
+            if (objectHealth != null)
+            {
+                objectHealth.subtractHealth(hitDamage);
+            }
         }
     }
 
@@ -224,6 +243,7 @@ public class CheckIfEnemyIsNearNode : MyTaskNode
     }
 }
 
+/*
 public class MySelectorNode : MyTaskNode
 {
     public override bool run()
@@ -272,3 +292,4 @@ public class MyTaskNode
         children.Add(node);
     }
 }
+*/
