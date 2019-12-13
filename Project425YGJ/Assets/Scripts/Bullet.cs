@@ -51,6 +51,8 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("Hit enemy");
+            Vector3 moveDirection = transform.position - collision.transform.position;
+            collision.transform.gameObject.GetComponent<Rigidbody2D>().AddForce(moveDirection.normalized * -50f);
             collision.gameObject.GetComponent<EnemyLevel1>().isShotByPlayer = true;
         }
 

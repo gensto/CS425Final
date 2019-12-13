@@ -7,7 +7,10 @@ public class Health : MonoBehaviour
     // Using a integer point health system
     [SerializeField]
     private int health = 4;
+    [SerializeField]
+    private int maxHealth = 4;
 
+    private Rigidbody2D _rigidbody;
 
     // When hit flash variables
     public float flashTime;
@@ -16,6 +19,8 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
+        _rigidbody = GetComponent<Rigidbody2D>();
+        health = maxHealth;
         mRenderer = GetComponent<SpriteRenderer>();
         originalColor = mRenderer.color;
     }
@@ -23,6 +28,10 @@ public class Health : MonoBehaviour
     public int getHealth()
     {
         return health;
+    }
+    public int getMaxHealth()
+    {
+        return maxHealth;
     }
 
     /**
