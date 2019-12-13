@@ -9,7 +9,7 @@ public class EnemyLevel1 : MonoBehaviour
     [SerializeField]
     int hitDamage = 1;
     public bool isShotByPlayer = false;
-
+    private Rigidbody2D _rigidbody;
     float chaseTimer = 3.0f;
 
     MyBehaviorTree behavior = null;
@@ -22,6 +22,7 @@ public class EnemyLevel1 : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        _rigidbody = GetComponent<Rigidbody2D>();
         p = GameObject.Find("Player");
         goLeft = (Random.value > 0.5f);
 
@@ -154,6 +155,10 @@ public class EnemyLevel1 : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
+            Vector3 moveDirection = _rigidbody.transform.position - collision.transform.position;
+            _rigidbody.AddForce(moveDirection.normalized * 1000f);
+
+
             Debug.Log("Hit player");
             // If a health component is present affect their health
             if (objectHealth != null)

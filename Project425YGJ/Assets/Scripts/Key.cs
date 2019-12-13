@@ -7,12 +7,13 @@ public class Key : MonoBehaviour
     GameObject level1Manager;
     [SerializeField]
     GameObject door;
-
+    GameObject closedDoor;
     // Start is called before the first frame update
     void Start()
     {
         level1Manager = GameObject.Find("Level1Manager");
         door = GameObject.Find("Door");
+        closedDoor = GameObject.Find("ClosedDoor");
     }
 
     // Update is called once per frame
@@ -31,6 +32,7 @@ public class Key : MonoBehaviour
             level1Manager.GetComponent<Level1Manager>().unlockDoor = true;
             door = GameObject.Find("Door");
             door.gameObject.SetActive(true);
+            closedDoor.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
             Debug.Log("Obtained the key");
         }
