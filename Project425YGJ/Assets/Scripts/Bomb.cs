@@ -28,10 +28,29 @@ public class Bomb : MonoBehaviour
     private float interval = 1.0f;
     private float timer = 30.0f;
 
+    public AudioSource myBombFx;
+    [SerializeField]
+    private AudioClip fuse;
+    [SerializeField]
+    private AudioClip boom;
+
+    public void FuseSound()
+    {
+        myBombFx.volume = 0.1f;
+        myBombFx.PlayOneShot(fuse);
+    }
+
+    public void BoomSound()
+    {
+        myBombFx.volume = 0.1f;
+        myBombFx.PlayOneShot(boom);
+    }
+
     void Start()
     {
         mRenderer = GetComponent<SpriteRenderer>();
         timer = time;
+        FuseSound();
     }
 
     public void AddExplosionForce(Rigidbody2D body, float explosionForce, Vector3 explosionPosition, float explosionRadius)
@@ -55,6 +74,7 @@ public class Bomb : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer < 0.0f)
         {
+            BoomSound();
             timer = 0.0f;
             Vector2 position = this.transform.position;
             Collider2D[] colliders = Physics2D.OverlapCircleAll(position, radius);
@@ -89,5 +109,4 @@ public class Bomb : MonoBehaviour
             mRenderer.sprite = bombSprites[1];
         }
     }
-
 }
