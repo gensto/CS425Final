@@ -1276,7 +1276,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f4f2a9dbf4ecc45b0ab70378e6dec186, type: 2}
+  - {fileID: 2100000, guid: d929932afcf884c17817b4b87bd478eb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3259,37 +3259,11 @@ PrefabInstance:
       propertyPath: myHitDeathFx
       value: 
       objectReference: {fileID: 451559402}
-    - target: {fileID: 1296166927953161220, guid: 72f2515d524494a4a891ecf1f3a20535,
-        type: 3}
-      propertyPath: hitSound
-      value: 
-      objectReference: {fileID: 8300000, guid: b485834bc199e024cb5815e697bb9b5a, type: 3}
-    - target: {fileID: 1296166927953161220, guid: 72f2515d524494a4a891ecf1f3a20535,
-        type: 3}
-      propertyPath: deathSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 7e0845b74924f9048b6d9ad53bf83da9, type: 3}
-    - target: {fileID: 1990613093905416391, guid: 72f2515d524494a4a891ecf1f3a20535,
-        type: 3}
-      propertyPath: projectile
-      value: 
-      objectReference: {fileID: 3891679212103590328, guid: ff0a066ec87b94bd4a2f86d3296ef7c9,
-        type: 3}
     - target: {fileID: 1990613093905416391, guid: 72f2515d524494a4a891ecf1f3a20535,
         type: 3}
       propertyPath: myShootFx
       value: 
       objectReference: {fileID: 1078194291}
-    - target: {fileID: 1990613093905416391, guid: 72f2515d524494a4a891ecf1f3a20535,
-        type: 3}
-      propertyPath: shoot
-      value: 
-      objectReference: {fileID: 8300000, guid: b354f1489951dd0499e90b202c4381bf, type: 3}
-    - target: {fileID: 1990613093905416391, guid: 72f2515d524494a4a891ecf1f3a20535,
-        type: 3}
-      propertyPath: shootCircle
-      value: 
-      objectReference: {fileID: 8300000, guid: 0d56ee4457ba402429853d5cb4182bf4, type: 3}
     - target: {fileID: 3253176385757592362, guid: 72f2515d524494a4a891ecf1f3a20535,
         type: 3}
       propertyPath: m_LocalPosition.x

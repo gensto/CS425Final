@@ -15,6 +15,8 @@ public class Health : MonoBehaviour
     [SerializeField]
     private AudioClip hitSound;
 
+    [SerializeField]
+    GameObject deathObject;
 
     public void DeathSound()
     {
@@ -90,7 +92,10 @@ public class Health : MonoBehaviour
     //Yammin - Add death sound
     void invokeDeath()
     {
-        
+        if (deathObject)
+        {
+            Instantiate(deathObject, gameObject.transform.position, gameObject.transform.rotation);
+        }
         Destroy(gameObject);
     }
 
