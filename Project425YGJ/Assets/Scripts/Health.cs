@@ -9,7 +9,22 @@ public class Health : MonoBehaviour
     private int health = 4;
     [SerializeField]
     private int maxHealth = 4;
+    public AudioSource myHitDeathFx;
+    [SerializeField]
+    private AudioClip deathSound;
+    [SerializeField]
+    private AudioClip hitSound;
 
+
+    //public AudioClip hoverFx;
+    //public AudioClip clickFx;
+    public void DeathSound()
+    {
+        //myDeathFx.volume = 0.2f;
+        myHitDeathFx.PlayOneShot(deathSound);
+    }
+
+    private Rigidbody2D _rigidbody;
 
     // When hit flash variables
     public float flashTime;
@@ -18,6 +33,7 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
+        _rigidbody = GetComponent<Rigidbody2D>();
         health = maxHealth;
         mRenderer = GetComponent<SpriteRenderer>();
         originalColor = mRenderer.color;
@@ -65,9 +81,12 @@ public class Health : MonoBehaviour
         }
     }
 
+
+    //Yammin - Add death sound
     void invokeDeath()
     {
         Destroy(gameObject);
+        DeathSound();
     }
 
     void invokeHit()

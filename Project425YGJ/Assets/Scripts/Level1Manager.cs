@@ -12,6 +12,7 @@ public class Level1Manager : MonoBehaviour
     public bool unlockDoor = false;
     public bool obtainedKey = false;
     public bool enteredDoor = false;
+    
 
     public AudioSource myVictoryFx;
     public AudioClip victory;
@@ -19,6 +20,7 @@ public class Level1Manager : MonoBehaviour
     public AudioClip keyPickUp;
     public AudioSource myEnemiesClearedFx;
     public AudioClip enemiesCleared;
+    
 
     public void EnemiesClearedSound()
     {
@@ -47,10 +49,27 @@ public class Level1Manager : MonoBehaviour
         //door.SetActive(false);
         key.SetActive(false);
     }
+    /*
+    int count = enemies.transform.childCount;
+    public AudioSource myDeathFx;
+    public AudioClip death;
 
+    public void DeathSound()
+    {
+        //myDeathFx.volume = 0.2f;
+        myDeathFx.PlayOneShot(death);
+    }
+    */
     // Update is called once per frame
     void Update()
     {
+        /*
+        if (enemies.transform.childCount < count)
+        {
+            //Play grunt sound effect
+            count = enemies.transform.childCount;
+        }
+        */
         if(enemies.transform.childCount == 0 && !levelFinished)
         {
             EnemiesClearedSound();
