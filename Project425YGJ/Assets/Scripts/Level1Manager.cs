@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Level1Manager : MonoBehaviour
 {
     GameObject enemies;
     GameObject key;
     GameObject door;
+    GameObject closedDoor;
     GameObject music;
     bool levelFinished = false;
     public bool unlockDoor = false;
@@ -44,9 +46,9 @@ public class Level1Manager : MonoBehaviour
     {
         enemies = GameObject.Find("Enemies");
         key = GameObject.Find("Key");
+        closedDoor = GameObject.Find("ClosedDoor");
         door = GameObject.Find("Door");
         music = GameObject.Find("BackgroundMusic");
-        //door.SetActive(false);
         key.SetActive(false);
     }
     
@@ -75,15 +77,25 @@ public class Level1Manager : MonoBehaviour
             VictorySound();
             //load next scene (level)
             Debug.Log("Loading next scene");
+            StartCoroutine(LoadNextScene());
         }
 
         if (obtainedKey)
         {
             obtainedKey = false;
+            closedDoor.SetActive(false);
             KeyPickUpSound();
             //Debug.Log("Loading next scene");
         }
     }
 
+    IEnumerator LoadNextScene()
+    {
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+    }
 
 }

@@ -96,8 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b86c7b4feca814d2695c8acbc1a21da2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 3
+  runSpeed: 4
   diagonalPenalty: 0.7
+  myShootFx: {fileID: 0}
+  shoot: {fileID: 8300000, guid: da7d34de99f50c04494385c4ed71c125, type: 3}
   bulletPrefab: {fileID: 3891679212103590333, guid: c216143cc322b47c0a4f6ab8f9ab5e88,
     type: 3}
   bulletSpawnOffset: 0.75
@@ -155,7 +157,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 4
   maxHealth: 4
-  flashTime: 0
+  myHitDeathFx: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: b9e8ea40d696ba64abfe7cf032a83511, type: 3}
+  hitSound: {fileID: 8300000, guid: e5f283f51ad8350419eac5d8e422ef05, type: 3}
+  flashTime: 0.1
   mRenderer: {fileID: 0}
 --- !u!68 &5694346942113761187
 EdgeCollider2D:
