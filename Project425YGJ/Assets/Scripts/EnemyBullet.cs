@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     int vertical = -1;
 
@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        this.transform.Translate(new Vector2(0, vertical * Time.deltaTime * bulletSpeed));
+        //this.transform.Translate(new Vector2(0, vertical * Time.deltaTime * bulletSpeed));
     }
 
     public void ShootLeft()
@@ -53,10 +53,9 @@ public class Bullet : MonoBehaviour
             Debug.Log("Hit enemy");
             Vector3 moveDirection = transform.position - collision.transform.position;
             collision.transform.gameObject.GetComponent<Rigidbody2D>().AddForce(moveDirection.normalized * -50f);
-        }
-        if (collision.gameObject.GetComponent<EnemyLevel1>()) {
             collision.gameObject.GetComponent<EnemyLevel1>().isShotByPlayer = true;
         }
+
         // If a health component is present affect their health
         if (objectHealth != null)
         {

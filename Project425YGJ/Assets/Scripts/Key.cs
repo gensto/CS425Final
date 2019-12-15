@@ -27,7 +27,6 @@ public class Key : MonoBehaviour
         //player picks up key
         if (collision.gameObject.tag == "Player")
         {
-           
             level1Manager.GetComponent<Level1Manager>().obtainedKey = true;
             level1Manager.GetComponent<Level1Manager>().unlockDoor = true;
             door = GameObject.Find("Door");

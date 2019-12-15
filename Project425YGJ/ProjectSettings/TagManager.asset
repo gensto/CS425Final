@@ -16,9 +16,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - PlayerProjectiles
+  - Enemys
+  - EnemyProjectiles
   - 
   - 
   - 
@@ -43,4 +43,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 41688263
+    locked: 0
+  - name: FloorDecals
+    uniqueID: 2431211043
+    locked: 0
+  - name: Entities
+    uniqueID: 1309143071
+    locked: 0
+  - name: Projectiles
+    uniqueID: 448475679
     locked: 0

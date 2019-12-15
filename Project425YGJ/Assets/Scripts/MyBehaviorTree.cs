@@ -9,7 +9,7 @@ public class MyBehaviorTree
 
     public MyBehaviorTree(MyTaskNode root)
     {
-        Debug.Log("sup hoess");
+        Debug.Log("Run tree");
         this.root = root;
     }
 

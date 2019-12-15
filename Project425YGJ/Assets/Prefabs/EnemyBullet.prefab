@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3891679212103590335}
   - component: {fileID: 3891679212103590332}
-  - component: {fileID: 3891679212103590333}
   - component: {fileID: 3891679212103590330}
-  - component: {fileID: 7522248641791464253}
-  m_Layer: 8
-  m_Name: Bullet
+  - component: {fileID: 114859227465930080}
+  - component: {fileID: 2644726919977148770}
+  m_Layer: 10
+  m_Name: EnemyBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3891679212103590328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 448475679
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a868c971f67ca46ce8403b546120ef40, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 023cab7064c584952864f6070659d04e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -82,20 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3891679212103590333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3891679212103590328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67928c33cd49c4119a954d3c9c534294, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletSpeed: 7
-  healthAffect: 1
 --- !u!50 &3891679212103590330
 Rigidbody2D:
   serializedVersion: 4
@@ -117,7 +103,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &7522248641791464253
+--- !u!114 &114859227465930080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3891679212103590328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56ef90a6958d5409898b1805f941b23b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 0.4
+  healthAffect: 1
+--- !u!58 &2644726919977148770
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,6 +130,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.025}
+  m_Offset: {x: 0, y: 0.035}
   serializedVersion: 2
-  m_Radius: 0.15
+  m_Radius: 0.26410064
