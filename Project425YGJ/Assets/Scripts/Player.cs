@@ -16,14 +16,12 @@ public class Player : MonoBehaviour
     double fireRate = 0.4;
     double nextFire = 0.0;
 
-    public AudioSource myShootFx;
     [SerializeField]
     private AudioClip shoot;
-
     public void ShootSound()
     {
         //myShootFx.volume = 0.2f;
-        myShootFx.PlayOneShot(shoot);
+        AudioSource.PlayClipAtPoint(shoot, transform.position);
     }
     // Component Variables
     Rigidbody2D body;

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6839223015766029475}
   - component: {fileID: 6813770814818943411}
   - component: {fileID: 3015393983338460828}
+  - component: {fileID: 95893176451108598}
   m_Layer: 9
   m_Name: Enemy3
   m_TagString: Enemy
@@ -72,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 1309143071
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dd95769e51b2045e1aeed1ced1fd9998, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e3ebb7d1ed64a43e8a29f87ff8175bb6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -97,6 +98,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   maxHealth: 4
+  deathSound: {fileID: 8300000, guid: c1c520005b183214aaa2adca204232b8, type: 3}
+  hitSound: {fileID: 8300000, guid: 19489afdfbf72844eb48c1952b913684, type: 3}
+  deathObject: {fileID: 0}
   flashTime: 0.1
   mRenderer: {fileID: 0}
 --- !u!50 &6839223015766029475
@@ -138,20 +142,24 @@ PolygonCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 2, y: 2}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1.1999999, y: -0.72999996}
-      - {x: 1.3199999, y: -0.72999996}
-      - {x: 1.03, y: 0.39}
-      - {x: 0.45, y: 0.90999997}
-      - {x: -0.11, y: 1.37}
-      - {x: -1.0799999, y: 0.35999998}
-      - {x: -1.1999999, y: -0.42999998}
+    - - {x: 0.036000002, y: 0.64000005}
+      - {x: -0.17600001, y: 0.63600004}
+      - {x: -0.33200002, y: 0.74}
+      - {x: -0.23200001, y: 0.22000001}
+      - {x: -0.29200003, y: -0.048}
+      - {x: -0.272, y: -0.404}
+      - {x: -0.056, y: -0.49600002}
+      - {x: -0.136, y: -0.776}
+      - {x: 0.256, y: -0.55200005}
+      - {x: 0.148, y: 0.252}
+      - {x: 0.21200001, y: 0.74}
 --- !u!114 &3015393983338460828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,3 +172,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6e0dd8033ed4d4ba7bddb5fc495b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bombPrefab: {fileID: 7576985882492320340, guid: 539ef7ec5260942718536124a0e93d52,
+    type: 3}
+  myCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.0018920898
+      inSlope: 0.011920009
+      outSlope: 0.011920009
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.3734143
+    - serializedVersion: 3
+      time: 0.4989577
+      value: 0.20442289
+      inSlope: 0.0008443892
+      outSlope: 0.0008443892
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.0018920898
+      inSlope: -0.12778991
+      outSlope: -0.12778991
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.2788874
+      outWeight: 0
+    m_PreInfinity: 1
+    m_PostInfinity: 1
+    m_RotationOrder: 4
+--- !u!95 &95893176451108598
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7292032480894342752}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 54552f75e18ba4d678ac3d75f79edae1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

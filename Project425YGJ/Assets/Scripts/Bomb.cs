@@ -28,7 +28,6 @@ public class Bomb : MonoBehaviour
     private float interval = 1.0f;
     private float timer = 30.0f;
 
-    public AudioSource myBombFx;
     [SerializeField]
     private AudioClip fuse;
     [SerializeField]
@@ -36,14 +35,14 @@ public class Bomb : MonoBehaviour
 
     public void FuseSound()
     {
-        myBombFx.volume = 0.1f;
-        myBombFx.PlayOneShot(fuse);
+       // myBombFx.volume = 0.1f;
+        AudioSource.PlayClipAtPoint(fuse, transform.position);
     }
 
     public void BoomSound()
     {
-        myBombFx.volume = 0.1f;
-        myBombFx.PlayOneShot(boom);
+       // myBombFx.volume = 0.1f;
+        AudioSource.PlayClipAtPoint(boom, transform.position);
     }
 
     void Start()
@@ -89,7 +88,7 @@ public class Bomb : MonoBehaviour
                 }
 
                 Health objectHealth = hit.gameObject.GetComponent<Health>();
-                if (objectHealth != null)
+                if (objectHealth != null && !hit.gameObject.GetComponent<EnemyLevel3>())
                 {
                     objectHealth.subtractHealth(1);
                 }
@@ -100,7 +99,7 @@ public class Bomb : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (Mathf.PingPong(Time.time, interval) > (interval / 2.0f))
+        if (Mathf.PingPong(time, interval) > (interval / 2.0f))
         {
             mRenderer.sprite = bombSprites[0];
         }

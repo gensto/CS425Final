@@ -160,6 +160,7 @@ MonoBehaviour:
   myHitDeathFx: {fileID: 0}
   deathSound: {fileID: 8300000, guid: b9e8ea40d696ba64abfe7cf032a83511, type: 3}
   hitSound: {fileID: 8300000, guid: e5f283f51ad8350419eac5d8e422ef05, type: 3}
+  deathObject: {fileID: 0}
   flashTime: 0.1
   mRenderer: {fileID: 0}
 --- !u!68 &5694346942113761187

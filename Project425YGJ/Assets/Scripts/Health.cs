@@ -9,7 +9,6 @@ public class Health : MonoBehaviour
     private int health = 4;
     [SerializeField]
     private int maxHealth = 4;
-    public AudioSource myHitDeathFx;
     [SerializeField]
     private AudioClip deathSound;
     [SerializeField]
@@ -20,14 +19,15 @@ public class Health : MonoBehaviour
 
     public void DeathSound()
     {
-        //myDeathFx.volume = 0.2f;
-        myHitDeathFx.PlayOneShot(deathSound);
+        AudioSource.PlayClipAtPoint(deathSound, transform.position);
     }
 
     public void HitSound()
     {
         //myHitDeathFx.volume = 0.2f;
-        myHitDeathFx.PlayOneShot(hitSound);
+        //levelSoundSource.PlayOneShot(hitSound);
+
+        AudioSource.PlayClipAtPoint(hitSound, transform.position);
     }
 
     private Rigidbody2D _rigidbody;

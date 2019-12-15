@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7576985882492320338}
   - component: {fileID: 114422686171523442}
   - component: {fileID: 4871339891450311735}
+  - component: {fileID: 50400434446763508}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -101,10 +102,9 @@ MonoBehaviour:
   switchTime: 1
   radius: 2
   power: 1500
-  time: 4
-  maxInterval: 1.2
+  time: 3
+  maxInterval: 1
   minInterval: 0.2
-  myBombFx: {fileID: 0}
   fuse: {fileID: 8300000, guid: 78f153f0fc2148e4ca5f5500364a2388, type: 3}
   boom: {fileID: 8300000, guid: 341eb5862843d2e45a924a151761a8d3, type: 3}
 --- !u!58 &4871339891450311735
@@ -123,3 +123,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!50 &50400434446763508
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7576985882492320340}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 10
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

@@ -26,7 +26,6 @@ public class EnemyLevel2 : MonoBehaviour
     double nextFire = 0.0;
     bool didCircleShot = false;
 
-    public AudioSource myShootFx;
     [SerializeField]
     private AudioClip shoot;
     [SerializeField]
@@ -35,13 +34,13 @@ public class EnemyLevel2 : MonoBehaviour
     public void ShootSound()
     {
         //myShootFx.volume = 0.2f;
-        myShootFx.PlayOneShot(shoot);
+        AudioSource.PlayClipAtPoint(shoot, transform.position);
     }
 
     public void ShootCircleSound()
     {
         //myShootFx.volume = 0.2f;
-        myShootFx.PlayOneShot(shootCircle);
+        AudioSource.PlayClipAtPoint(shootCircle, transform.position);
     }
 
     // Start is called before the first frame update

@@ -3778,26 +3778,11 @@ PrefabInstance:
       propertyPath: myHitDeathFx
       value: 
       objectReference: {fileID: 2145493759}
-    - target: {fileID: 114256331483017900, guid: b91a6c74248987f45aaff6d87e8afe69,
-        type: 3}
-      propertyPath: hitSound
-      value: 
-      objectReference: {fileID: 8300000, guid: e5f283f51ad8350419eac5d8e422ef05, type: 3}
-    - target: {fileID: 114256331483017900, guid: b91a6c74248987f45aaff6d87e8afe69,
-        type: 3}
-      propertyPath: deathSound
-      value: 
-      objectReference: {fileID: 8300000, guid: b9e8ea40d696ba64abfe7cf032a83511, type: 3}
     - target: {fileID: 8378395089142513040, guid: b91a6c74248987f45aaff6d87e8afe69,
         type: 3}
       propertyPath: myShootFx
       value: 
       objectReference: {fileID: 1859765693}
-    - target: {fileID: 8378395089142513040, guid: b91a6c74248987f45aaff6d87e8afe69,
-        type: 3}
-      propertyPath: shoot
-      value: 
-      objectReference: {fileID: 8300000, guid: da7d34de99f50c04494385c4ed71c125, type: 3}
     - target: {fileID: 8378395089142513041, guid: b91a6c74248987f45aaff6d87e8afe69,
         type: 3}
       propertyPath: m_Name
