@@ -3665,29 +3665,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 114422686171523442, guid: 539ef7ec5260942718536124a0e93d52,
         type: 3}
-      propertyPath: switchTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114422686171523442, guid: 539ef7ec5260942718536124a0e93d52,
-        type: 3}
-      propertyPath: time
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114422686171523442, guid: 539ef7ec5260942718536124a0e93d52,
-        type: 3}
       propertyPath: myBombFx
       value: 
       objectReference: {fileID: 1350921086}
-    - target: {fileID: 114422686171523442, guid: 539ef7ec5260942718536124a0e93d52,
-        type: 3}
-      propertyPath: boom
-      value: 
-      objectReference: {fileID: 8300000, guid: 341eb5862843d2e45a924a151761a8d3, type: 3}
-    - target: {fileID: 114422686171523442, guid: 539ef7ec5260942718536124a0e93d52,
-        type: 3}
-      propertyPath: fuse
-      value: 
-      objectReference: {fileID: 8300000, guid: 78f153f0fc2148e4ca5f5500364a2388, type: 3}
     - target: {fileID: 7576985882492320337, guid: 539ef7ec5260942718536124a0e93d52,
         type: 3}
       propertyPath: m_LocalPosition.x

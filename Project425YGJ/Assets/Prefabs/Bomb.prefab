@@ -96,14 +96,17 @@ MonoBehaviour:
   bombSprites:
   - {fileID: 21300000, guid: 83aaa537e612d4dfda813cd8dd4303c6, type: 3}
   - {fileID: 21300000, guid: d8405080231f848a7b1d7015cd4a80fa, type: 3}
-  explosionRemains: {fileID: 4209947085634082577, guid: b4c7413a951214e3d99d2eb69a2a2128,
+  explosionRemains: {fileID: 6420312354408763692, guid: a1f8249514c324bbe96dfd906bf7a438,
     type: 3}
-  switchTime: 4
+  switchTime: 1
   radius: 2
   power: 1500
-  time: 30
+  time: 4
   maxInterval: 1.2
   minInterval: 0.2
+  myBombFx: {fileID: 0}
+  fuse: {fileID: 8300000, guid: 78f153f0fc2148e4ca5f5500364a2388, type: 3}
+  boom: {fileID: 8300000, guid: 341eb5862843d2e45a924a151761a8d3, type: 3}
 --- !u!58 &4871339891450311735
 CircleCollider2D:
   m_ObjectHideFlags: 0
