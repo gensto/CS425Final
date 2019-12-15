@@ -53,9 +53,10 @@ public class Bullet : MonoBehaviour
             Debug.Log("Hit enemy");
             Vector3 moveDirection = transform.position - collision.transform.position;
             collision.transform.gameObject.GetComponent<Rigidbody2D>().AddForce(moveDirection.normalized * -50f);
+        }
+        if (collision.gameObject.GetComponent<EnemyLevel1>()) {
             collision.gameObject.GetComponent<EnemyLevel1>().isShotByPlayer = true;
         }
-
         // If a health component is present affect their health
         if (objectHealth != null)
         {
