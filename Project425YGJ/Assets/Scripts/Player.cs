@@ -16,6 +16,15 @@ public class Player : MonoBehaviour
     double fireRate = 0.4;
     double nextFire = 0.0;
 
+    public AudioSource myShootFx;
+    [SerializeField]
+    private AudioClip shoot;
+
+    public void ShootSound()
+    {
+        //myShootFx.volume = 0.2f;
+        myShootFx.PlayOneShot(shoot);
+    }
     // Component Variables
     Rigidbody2D body;
     SpriteRenderer spRenderer;
@@ -108,6 +117,7 @@ public class Player : MonoBehaviour
                 Bullet clone = Instantiate(bulletPrefab, transform.position + (Vector3.up * bulletSpawnOffset * 1.25f), transform.rotation);
                 // Set the direction of bullet
                 clone.ShootUp();
+                ShootSound();
             }
             else if (Input.GetKey(KeyCode.DownArrow))
             {
@@ -117,6 +127,7 @@ public class Player : MonoBehaviour
                 Bullet clone = Instantiate(bulletPrefab, transform.position - (Vector3.up * bulletSpawnOffset * 1.25f), transform.rotation);
                 // Set the direction of bullet
                 clone.ShootDown();
+                ShootSound();
             }
             else if (Input.GetKey(KeyCode.LeftArrow))
             {
@@ -127,6 +138,7 @@ public class Player : MonoBehaviour
                 Bullet clone = Instantiate(bulletPrefab, transform.position + (Vector3.left * bulletSpawnOffset), transform.rotation);
                 // Set the direction of bullet
                 clone.ShootLeft();
+                ShootSound();
             }
             else if (Input.GetKey(KeyCode.RightArrow))
             {
@@ -136,6 +148,7 @@ public class Player : MonoBehaviour
                 Bullet clone = Instantiate(bulletPrefab, transform.position - (Vector3.left * bulletSpawnOffset), transform.rotation);
                 // Set the direction of bullet
                 clone.ShootRight();
+                ShootSound();
                 spRenderer.flipX = true;
             }
             else

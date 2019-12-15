@@ -24,6 +24,25 @@ public class EnemyLevel2 : MonoBehaviour
     double fireRate = 0.4;
     double nextFire = 0.0;
     bool didCircleShot = false;
+
+    public AudioSource myShootFx;
+    [SerializeField]
+    private AudioClip shoot;
+    [SerializeField]
+    private AudioClip shootCircle;
+
+    public void ShootSound()
+    {
+        //myShootFx.volume = 0.2f;
+        myShootFx.PlayOneShot(shoot);
+    }
+
+    public void ShootCircleSound()
+    {
+        //myShootFx.volume = 0.2f;
+        myShootFx.PlayOneShot(shootCircle);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +92,7 @@ public class EnemyLevel2 : MonoBehaviour
 
             angle += angleStep;
         }
+        ShootCircleSound();
     }
 
     public void ShootProjectileAtObject(GameObject _target, float speed)
@@ -82,6 +102,7 @@ public class EnemyLevel2 : MonoBehaviour
             nextFire = Time.time + fireRate;
             Rigidbody2D bullet = Instantiate(projectile, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
             bullet.velocity = (_target.transform.position - bullet.transform.position).normalized * speed;
+            ShootSound();
         }
     }
 

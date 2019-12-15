@@ -10,13 +10,13 @@ public class MenuSounds : MonoBehaviour
 
     public void HoverSound()
     {
-        myFx.volume = 0.05f;
+        myFx.volume = 0.4f;
         myFx.PlayOneShot(hoverFx);
     }
 
     public void ClickSound()
     {
-        myFx.volume = 0.01f;
+        myFx.volume = 0.4f;
         myFx.PlayOneShot(clickFx);
     }
 }
