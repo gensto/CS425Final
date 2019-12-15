@@ -9,6 +9,20 @@ public class Health : MonoBehaviour
     private int health = 4;
     [SerializeField]
     private int maxHealth = 4;
+    public AudioSource myHitDeathFx;
+    [SerializeField]
+    private AudioClip deathSound;
+    [SerializeField]
+    private AudioClip hitSound;
+
+
+    //public AudioClip hoverFx;
+    //public AudioClip clickFx;
+    public void DeathSound()
+    {
+        //myDeathFx.volume = 0.2f;
+        myHitDeathFx.PlayOneShot(deathSound);
+    }
 
     private Rigidbody2D _rigidbody;
 
@@ -67,9 +81,12 @@ public class Health : MonoBehaviour
         }
     }
 
+
+    //Yammin - Add death sound
     void invokeDeath()
     {
         Destroy(gameObject);
+        DeathSound();
     }
 
     void invokeHit()
