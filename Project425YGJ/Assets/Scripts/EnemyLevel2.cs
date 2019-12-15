@@ -143,7 +143,7 @@ public class ShootInAllDirectionsNode : MyTaskNode
     
     public override bool run()
     {
-        e.ShootProjectilesInCircle(4, 2);
+        e.ShootProjectilesInCircle(8, 2);
 
         return true;
     }

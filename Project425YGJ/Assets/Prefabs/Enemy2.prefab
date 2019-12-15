@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  maxHealth: 4
+  maxHealth: 10
   flashTime: 0.1
   mRenderer: {fileID: 0}
 --- !u!50 &1656998516359993839
@@ -145,13 +145,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.11, y: -0.32}
-      - {x: -0.3038102, y: -0.01233448}
-      - {x: -0.22, y: 0.39}
-      - {x: 0.12, y: 0.37}
-      - {x: 0.29999998, y: 0.17999999}
-      - {x: 0.41, y: -0.07}
-      - {x: 0.34, y: -0.39999998}
+    - - {x: -1.1999999, y: -0.72999996}
+      - {x: 1.3199999, y: -0.72999996}
+      - {x: 1.03, y: 0.39}
+      - {x: 0.45, y: 0.90999997}
+      - {x: -0.11, y: 1.37}
+      - {x: -1.0799999, y: 0.35999998}
+      - {x: -1.1999999, y: -0.42999998}
 --- !u!114 &1990613093905416391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,4 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfProjectiles: 0
-  projectile: {fileID: 0}
+  projectile: {fileID: 3891679212103590328, guid: ff0a066ec87b94bd4a2f86d3296ef7c9,
+    type: 3}
+  timerDone: 1
+  shotProjectile: 0

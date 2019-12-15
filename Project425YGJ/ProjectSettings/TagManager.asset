@@ -50,6 +50,9 @@ TagManager:
   - name: FloorDecals
     uniqueID: 2431211043
     locked: 0
-  - name: Movables
+  - name: Entities
     uniqueID: 1309143071
+    locked: 0
+  - name: Projectiles
+    uniqueID: 448475679
     locked: 0
