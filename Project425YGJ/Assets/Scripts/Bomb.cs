@@ -75,7 +75,7 @@ public class Bomb : MonoBehaviour
                 }
 
             }
-            GameObject bombexplosion = Instantiate(explosionRemains, position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
+            GameObject bombexplosion = Instantiate(explosionRemains, position, Quaternion.Euler(0, 0, Random.Range(0, 2) == 1 ? 0 : 180));
 
             Destroy(gameObject);
         }
