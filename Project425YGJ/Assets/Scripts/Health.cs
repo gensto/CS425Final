@@ -16,12 +16,16 @@ public class Health : MonoBehaviour
     private AudioClip hitSound;
 
 
-    //public AudioClip hoverFx;
-    //public AudioClip clickFx;
     public void DeathSound()
     {
         //myDeathFx.volume = 0.2f;
         myHitDeathFx.PlayOneShot(deathSound);
+    }
+
+    public void HitSound()
+    {
+        //myHitDeathFx.volume = 0.2f;
+        myHitDeathFx.PlayOneShot(hitSound);
     }
 
     private Rigidbody2D _rigidbody;
@@ -72,6 +76,7 @@ public class Health : MonoBehaviour
     {
         if ( (health - value) <= 0 )
         {
+            DeathSound();
             health = 0;
             invokeDeath();
         }
@@ -85,12 +90,13 @@ public class Health : MonoBehaviour
     //Yammin - Add death sound
     void invokeDeath()
     {
+        
         Destroy(gameObject);
-        DeathSound();
     }
 
     void invokeHit()
     {
+        HitSound();
         FlashRed();
     }
 

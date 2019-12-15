@@ -24,19 +24,19 @@ public class Level1Manager : MonoBehaviour
 
     public void EnemiesClearedSound()
     {
-        myEnemiesClearedFx.volume = 0.2f;
+        myEnemiesClearedFx.volume = 0.5f;
         myEnemiesClearedFx.PlayOneShot(enemiesCleared);
     }
 
     public void KeyPickUpSound()
     {
-        //myFx.volume = 1.0f;
+        myKeyFx.volume = 0.8f;
         myKeyFx.PlayOneShot(keyPickUp);
     }
 
     public void VictorySound()
     {
-        //myFx.volume = 0.05f;
+        myVictoryFx.volume = 0.6f;
         myVictoryFx.PlayOneShot(victory);
     }
     // Start is called before the first frame update
@@ -49,17 +49,7 @@ public class Level1Manager : MonoBehaviour
         //door.SetActive(false);
         key.SetActive(false);
     }
-    /*
-    int count = enemies.transform.childCount;
-    public AudioSource myDeathFx;
-    public AudioClip death;
-
-    public void DeathSound()
-    {
-        //myDeathFx.volume = 0.2f;
-        myDeathFx.PlayOneShot(death);
-    }
-    */
+    
     // Update is called once per frame
     void Update()
     {
