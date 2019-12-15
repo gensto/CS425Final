@@ -97,6 +97,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   maxHealth: 10
+  myHitDeathFx: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 7e0845b74924f9048b6d9ad53bf83da9, type: 3}
+  hitSound: {fileID: 8300000, guid: b485834bc199e024cb5815e697bb9b5a, type: 3}
+  deathObject: {fileID: 6643007326657655830, guid: 98761b8d931334bcc91aca343bed48a1,
+    type: 3}
   flashTime: 0.1
   mRenderer: {fileID: 0}
 --- !u!50 &1656998516359993839
@@ -169,3 +174,6 @@ MonoBehaviour:
     type: 3}
   timerDone: 1
   shotProjectile: 0
+  myShootFx: {fileID: 0}
+  shoot: {fileID: 8300000, guid: b354f1489951dd0499e90b202c4381bf, type: 3}
+  shootCircle: {fileID: 8300000, guid: 0d56ee4457ba402429853d5cb4182bf4, type: 3}

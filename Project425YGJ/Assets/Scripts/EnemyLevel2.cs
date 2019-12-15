@@ -10,6 +10,7 @@ public class EnemyLevel2 : MonoBehaviour
     [SerializeField]
     GameObject projectile;
 
+
     Vector2 startPoint;
 
     float radius, moveSpeed;
