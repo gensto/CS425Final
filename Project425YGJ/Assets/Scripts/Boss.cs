@@ -1,3 +1,4 @@
+
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -92,6 +93,67 @@ public class Boss : MonoBehaviour
     void Update()
     {
         
+=======
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Boss : MonoBehaviour
+{
+    MyBehaviorTree behavior = null;
+    public AnimationCurve slamCurve;
+    public GameObject Enemy1;
+
+    public bool isEnraged = false;
+    public bool stageOneIsDone = false;
+    public bool stageTwoIsDone = false;
+    public bool stageThreeIsDone = false;
+
+    public bool doneSlamming = true;
+    public bool damagedOnce = false;
+
+    GameObject p = null;
+    Vector2 startPoint;
+    Health myHealth;
+
+    public bool circleShotTimerDone = false;
+    public bool spawnEnemyTimerDone = false;
+    float spawnEnemyTimer = 4.0f;
+    float circleShotTimer = 3.0f;
+    double fireRate = 0.4;
+    double nextFire = 0.0;
+    float radius;
+    [SerializeField]
+    float slamRadius = 2;
+    bool stopChasing = true;
+    float stopChasingTimer = 1.0f;
+    bool currentlySlamming = false;
+
+    [SerializeField]
+    GameObject crack;
+    [SerializeField]
+    GameObject crackSpawnPoint;
+
+    [SerializeField]
+    private AudioClip shoot;
+    [SerializeField]
+    private AudioClip shootCircle;
+    [SerializeField]
+    GameObject projectile;
+    // Start is called before the first frame update
+    void Start()
+    {
+        radius = 20f;
+        p = GameObject.Find("Player");
+        myHealth = GetComponent<Health>();
+        myHealth.setHealth(100);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+
         if (behavior != null)
         {
             behavior.run();
@@ -316,6 +378,7 @@ public class Boss : MonoBehaviour
         }
 
         return false;
+
     }
 
     void EndSlam()
@@ -647,6 +710,338 @@ public class BodySlamNode : MyTaskNode
 
     public override bool run()
     {
+
+    }
+
+    void EndSlam()
+    {
+        Vector2 position = this.transform.position;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(position - Vector2.up, slamRadius); // 2 is radius of effect for slam
+        foreach (Collider2D hit in colliders)
+        {
+            Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
+
+            if (rb != null)
+            {
+                Debug.Log(hit.transform.name);
+                AddExplosionForce(rb, 1000, position, slamRadius);
+            }
+
+            Health objectHealth = hit.gameObject.GetComponent<Health>();
+            if (objectHealth != null && !hit.gameObject.GetComponent<Boss>() && !damagedOnce)
+            {
+                objectHealth.subtractHealth(1);
+                damagedOnce = true;
+            }
+
+        }
+
+        damagedOnce = false;
+        doneSlamming = true;
+        GameObject leftover = Instantiate(crack, crackSpawnPoint.transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
+    }
+
+
+
+    public void SpawnDustStorms()
+    {
+        spawnEnemyTimerDone = false;
+
+        Vector2 pos = transform.position;
+        pos.y -= 1;
+        Vector2 pos2 = transform.position;
+        pos2.x -= 1;
+        pos2.y -= 1;
+        Vector2 pos3 = transform.position;
+        pos3.x += 1;
+        pos3.y -= 1;
+        GameObject dustStorm = Instantiate(Enemy1, pos, gameObject.transform.rotation);
+        GameObject dustStorm2 = Instantiate(Enemy1, pos2, gameObject.transform.rotation);
+        GameObject dustStorm3 = Instantiate(Enemy1, pos3, gameObject.transform.rotation);
+
+    }
+
+    public int getBossCurrHealth()
+    {
+        return myHealth.getHealth();
+    }
+
+    void BuildBehaviorTree()
+    {
+        
+        MySelectorNode rootSelector = new MySelectorNode();
+        MySequenceNode sequenceNode1 = new MySequenceNode();
+        MySequenceNode sequenceNode2 = new MySequenceNode();
+        MySequenceNode sequenceNode3 = new MySequenceNode();
+        MySequenceNode sequenceNode4 = new MySequenceNode();
+        MySelectorNode selectorNode1 = new MySelectorNode();
+
+        StageOneDone stageOneDone = new StageOneDone(this);
+        StageOneIsNotDone stageOneIsNotDone = new StageOneIsNotDone(this);
+        StageTwoDone stageTwoDone = new StageTwoDone(this);
+        StageTwoIsNotDone stageTwoIsNotDone = new StageTwoIsNotDone(this);
+        StageThreeIsNotDone stageThreeIsNotDone = new StageThreeIsNotDone(this);
+        Enraged enraged = new Enraged(this);
+        SprayBulletsTimerAtZeroNode sprayBulletsTimerAtZeroNode = new SprayBulletsTimerAtZeroNode(this);
+        SprayBulletsNode sprayBulletsNode = new SprayBulletsNode(this);
+        SpawnEnemyTimerAtZeroNode spawnEnemyTimerAtZeroNode = new SpawnEnemyTimerAtZeroNode(this);
+        SpawnEnemiesNode spawnEnemiesNode = new SpawnEnemiesNode(this);
+        PlayerNearBossNode playerNearBossNode = new PlayerNearBossNode(this);
+        BodySlamNode bodySlamNode = new BodySlamNode(this);
+        ShootAtPlayerBossNode shootAtPlayerBossNode = new ShootAtPlayerBossNode(this);
+
+        sequenceNode1.add_kid(stageOneIsNotDone);
+        sequenceNode1.add_kid(enraged);
+        sequenceNode1.add_kid(sprayBulletsTimerAtZeroNode);
+        sequenceNode1.add_kid(sprayBulletsNode);
+
+        sequenceNode2.add_kid(stageOneDone);
+        sequenceNode2.add_kid(stageTwoIsNotDone);
+        sequenceNode2.add_kid(enraged);
+        sequenceNode2.add_kid(spawnEnemyTimerAtZeroNode);
+        sequenceNode2.add_kid(spawnEnemiesNode);
+
+        sequenceNode3.add_kid(stageTwoDone);
+        sequenceNode3.add_kid(stageThreeIsNotDone);
+        sequenceNode3.add_kid(enraged);
+        sequenceNode3.add_kid(sprayBulletsTimerAtZeroNode);
+        sequenceNode3.add_kid(sprayBulletsNode);
+        sequenceNode3.add_kid(spawnEnemyTimerAtZeroNode);
+        sequenceNode3.add_kid(spawnEnemiesNode);
+
+        sequenceNode4.add_kid(playerNearBossNode);
+        sequenceNode4.add_kid(bodySlamNode);
+
+        selectorNode1.add_kid(sequenceNode4);
+        selectorNode1.add_kid(shootAtPlayerBossNode);
+
+        rootSelector.add_kid(sequenceNode1);
+        rootSelector.add_kid(sequenceNode2);
+        rootSelector.add_kid(sequenceNode3);
+        rootSelector.add_kid(selectorNode1);
+
+        behavior = new MyBehaviorTree(rootSelector);
+   
+    }
+}
+
+public class StageOneDone : MyTaskNode
+{
+    Boss e = null;
+
+    public StageOneDone(Boss e)
+    {
+        this.e = e;
+    }
+
+    public override bool run()
+    {
+        if(e.stageOneIsDone)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+
+public class StageOneIsNotDone : MyTaskNode
+{
+    Boss e = null;
+
+    public StageOneIsNotDone(Boss e)
+    {
+        this.e = e;
+    }
+
+    public override bool run()
+    {
+        if (e.stageOneIsDone)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+}
+
+public class StageTwoDone : MyTaskNode
+{
+    Boss e = null;
+
+    public StageTwoDone(Boss e)
+    {
+        this.e = e;
+    }
+
+    public override bool run()
+    {
+        if(e.stageTwoIsDone)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+
+public class StageTwoIsNotDone : MyTaskNode
+{
+    Boss e = null;
+
+    public StageTwoIsNotDone(Boss e)
+    {
+        this.e = e;
+    }
+
+    public override bool run()
+    {
+        if (e.stageTwoIsDone)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+}
+
+public class StageThreeIsNotDone : MyTaskNode
+{
+    Boss e = null;
+
+    public StageThreeIsNotDone(Boss e)
+    {
+        this.e = e;
+    }
+
+    public override bool run()
+    {
+        if (e.stageThreeIsDone)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+}
+
+public class Enraged : MyTaskNode
+{
+    Boss e = null;
+
+    public Enraged(Boss e)
+    {
+        this.e = e;
+    }
+
+    public override bool run()
+    {
+        Debug.Log("Is enraged: " + e.isEnraged);
+        return e.isEnraged;
+    }
+}
+
+public class SprayBulletsTimerAtZeroNode : MyTaskNode
+{
+    Boss e = null;
+
+    public SprayBulletsTimerAtZeroNode(Boss e)
+    {
+        this.e = e;
+    }
+
+    public override bool run()
+    {
+        return e.circleShotTimerDone;
+    }
+}
+
+
+public class SprayBulletsNode : MyTaskNode
+{
+    Boss e = null;
+
+    public SprayBulletsNode(Boss e)
+    {
+        this.e = e;
+    }
+
+    public override bool run()
+    {
+        e.ShootProjectilesInCircle(6, 3f);
+        return true;
+    }
+}
+
+public class SpawnEnemyTimerAtZeroNode : MyTaskNode
+{
+    Boss e = null;
+
+    public SpawnEnemyTimerAtZeroNode(Boss e)
+    {
+        this.e = e;
+    }
+
+    public override bool run()
+    {
+        return e.spawnEnemyTimerDone;
+    }
+}
+
+public class SpawnEnemiesNode : MyTaskNode
+{
+    Boss e = null;
+
+    public SpawnEnemiesNode(Boss e)
+    {
+        this.e = e;
+    }
+
+    public override bool run()
+    {
+        e.SpawnDustStorms();
+        return true;
+    }
+}
+
+public class PlayerNearBossNode : MyTaskNode
+{
+    Boss e = null;
+
+    public PlayerNearBossNode(Boss e)
+    {
+        this.e = e;
+    }
+
+    public override bool run()
+    {
+        //return e.isPlayerNear();
+        return e.insideCircle();
+    }
+}
+
+public class BodySlamNode : MyTaskNode
+{
+    Boss e = null;
+
+    public BodySlamNode(Boss e)
+    {
+        this.e = e;
+    }
+
+    public override bool run()
+    {
+
         if (e.doneSlamming)
         {
             e.StartSlam();
