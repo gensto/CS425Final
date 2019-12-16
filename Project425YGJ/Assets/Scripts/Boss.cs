@@ -5,6 +5,8 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     MyBehaviorTree behavior = null;
+    public AnimationCurve slamCurve;
+    public GameObject Enemy1;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +17,17 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Slam();
+    }
+
+    void Slam()
+    {
+        transform.position = new Vector3(transform.position.x, slamCurve.Evaluate((Time.time % slamCurve.length)), transform.position.z);
+    }
+
+    void SpawnDustStorm(Vector3 pos)
+    {
+        GameObject dustStorm = Instantiate(Enemy1, pos, gameObject.transform.rotation);
     }
 
     void BuildBehaviorTree()
