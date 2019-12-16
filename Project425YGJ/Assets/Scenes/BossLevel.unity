@@ -4217,26 +4217,6 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 7887267320626246137, guid: 15610876c07cf4b1d986521beadf7708,
         type: 3}
-
-      propertyPath: slam
-      value: 
-      objectReference: {fileID: 8300000, guid: 9226d605888f8f3459b884339b4cfeef, type: 3}
-    - target: {fileID: 7887267320626246137, guid: 15610876c07cf4b1d986521beadf7708,
-        type: 3}
-      propertyPath: rage1
-      value: 
-      objectReference: {fileID: 8300000, guid: 808d9afc3575e2944a377eca358ac8bd, type: 3}
-    - target: {fileID: 7887267320626246137, guid: 15610876c07cf4b1d986521beadf7708,
-        type: 3}
-      propertyPath: rage2
-      value: 
-      objectReference: {fileID: 8300000, guid: afd046b6c8871b24faa53c0b15f07233, type: 3}
-    - target: {fileID: 7887267320626246137, guid: 15610876c07cf4b1d986521beadf7708,
-        type: 3}
-      propertyPath: rage3
-      value: 
-      objectReference: {fileID: 8300000, guid: 4e6eb7159437b7944b81c3662dcbdd35, type: 3}
-
       propertyPath: crack
       value: 
       objectReference: {fileID: 74742648}
@@ -4250,7 +4230,6 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 100
       objectReference: {fileID: 0}
-
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15610876c07cf4b1d986521beadf7708, type: 3}
 --- !u!4 &7102647709112262136 stripped
