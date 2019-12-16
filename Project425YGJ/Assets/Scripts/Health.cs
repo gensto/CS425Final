@@ -42,6 +42,10 @@ public class Health : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         health = maxHealth;
         mRenderer = GetComponent<SpriteRenderer>();
+        if (!mRenderer)
+        {
+            mRenderer = GetComponentInChildren<SpriteRenderer>();
+        }
         originalColor = mRenderer.color;
     }
 

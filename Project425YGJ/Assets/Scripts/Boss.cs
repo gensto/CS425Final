@@ -128,7 +128,7 @@ public class Boss : MonoBehaviour
         if (Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
-            Rigidbody2D bullet = Instantiate(projectile, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
+            Rigidbody2D bullet = Instantiate(projectile, transform.position + Vector3.up, transform.rotation).GetComponent<Rigidbody2D>();
             bullet.velocity = (_target.transform.position - bullet.transform.position).normalized * speed;
             ShootSound();
         }
@@ -164,7 +164,7 @@ public class Boss : MonoBehaviour
         spawnEnemyTimer -= Time.deltaTime;
         //Debug.Log("Chasing enemy");
 
-        if (circleShotTimer <= 0)
+        if (spawnEnemyTimer <= 0)
         {
             //Debug.Log("No longer chasing");
             spawnEnemyTimerDone = true;
