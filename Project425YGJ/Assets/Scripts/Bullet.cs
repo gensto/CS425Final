@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
 
     [Tooltip("How the bullet will affect a gameobjects health when it hits.")][SerializeField]
     int healthAffect = 1;
+    int bossHealthAffect = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -48,19 +49,30 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
         Health objectHealth = collision.gameObject.GetComponent<Health>();
 
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Boss")
         {
-            Debug.Log("Hit enemy");
-            Vector3 moveDirection = transform.position - collision.transform.position;
-            collision.transform.gameObject.GetComponent<Rigidbody2D>().AddForce(moveDirection.normalized * -50f);
+            if (objectHealth != null)
+            {
+                objectHealth.subtractHealth(bossHealthAffect);
+            }
         }
-        if (collision.gameObject.GetComponent<EnemyLevel1>()) {
-            collision.gameObject.GetComponent<EnemyLevel1>().isShotByPlayer = true;
-        }
-        // If a health component is present affect their health
-        if (objectHealth != null)
+        else
         {
-            objectHealth.subtractHealth(healthAffect);
+            if (collision.gameObject.tag == "Enemy")
+            {
+                Debug.Log("Hit enemy");
+                Vector3 moveDirection = transform.position - collision.transform.position;
+                collision.transform.gameObject.GetComponent<Rigidbody2D>().AddForce(moveDirection.normalized * -50f);
+            }
+            if (collision.gameObject.GetComponent<EnemyLevel1>())
+            {
+                collision.gameObject.GetComponent<EnemyLevel1>().isShotByPlayer = true;
+            }
+            // If a health component is present affect their health
+            if (objectHealth != null)
+            {
+                objectHealth.subtractHealth(healthAffect);
+            }
         }
     }
 }

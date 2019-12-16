@@ -3677,6 +3677,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 7887267320626246137, guid: 15610876c07cf4b1d986521beadf7708,
+        type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 3891679212103590328, guid: ff0a066ec87b94bd4a2f86d3296ef7c9,
+        type: 3}
+    - target: {fileID: 9217766209791881023, guid: 15610876c07cf4b1d986521beadf7708,
+        type: 3}
+      propertyPath: m_Mass
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15610876c07cf4b1d986521beadf7708, type: 3}
 --- !u!4 &7102647709112262136 stripped
