@@ -542,12 +542,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340676591}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 0.543, z: 0}
-  m_LocalScale: {x: 1.5505041, y: 1.5505041, z: 1.5505041}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.12999988, y: -0.67700005, z: 0}
+  m_LocalScale: {x: 0.9357915, y: 0.9357915, z: 0.9357915}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_Father: {fileID: 7102647709112262136}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &497034150
 PrefabInstance:
@@ -3878,6 +3878,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 4915494788117548540, guid: 15610876c07cf4b1d986521beadf7708,
+        type: 3}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
     - target: {fileID: 7887267320626246137, guid: 15610876c07cf4b1d986521beadf7708,
         type: 3}
       propertyPath: projectile
@@ -3887,7 +3892,7 @@ PrefabInstance:
     - target: {fileID: 9217766209791881023, guid: 15610876c07cf4b1d986521beadf7708,
         type: 3}
       propertyPath: m_Mass
-      value: 500
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15610876c07cf4b1d986521beadf7708, type: 3}

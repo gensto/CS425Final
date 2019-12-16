@@ -51,6 +51,7 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (behavior != null)
         {
             behavior.run();
@@ -60,15 +61,11 @@ public class Boss : MonoBehaviour
             BuildBehaviorTree();
         }
 
+        chasePlayer();
         isBossEnraged();
         stageStatus();
-        chasePlayer();
         checkTimers();
-        /*
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            StartSlam();
-        }*/
+        
         if (myHealth.getHealth() <= 0)
         {
             Debug.Log("Dead");
@@ -96,8 +93,7 @@ public class Boss : MonoBehaviour
         //Debug.Log("Move towards playerrrr");
         if (doneSlamming)
         {
-            Debug.Log("Chasing player");
-            float step = 2 * Time.deltaTime;
+            float step = 1 * Time.deltaTime;
             this.transform.position = Vector2.MoveTowards(this.transform.position, p.transform.position, step);
         }
     }
