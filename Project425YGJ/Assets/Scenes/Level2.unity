@@ -977,6 +977,11 @@ PrefabInstance:
       propertyPath: myHitDeathFx
       value: 
       objectReference: {fileID: 451559402}
+    - target: {fileID: 1656998516359993839, guid: 72f2515d524494a4a891ecf1f3a20535,
+        type: 3}
+      propertyPath: m_Mass
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 1990613093905416391, guid: 72f2515d524494a4a891ecf1f3a20535,
         type: 3}
       propertyPath: shoot
@@ -3220,6 +3225,11 @@ PrefabInstance:
       propertyPath: myHitDeathFx
       value: 
       objectReference: {fileID: 451559402}
+    - target: {fileID: 1656998516359993839, guid: 72f2515d524494a4a891ecf1f3a20535,
+        type: 3}
+      propertyPath: m_Mass
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 1990613093905416391, guid: 72f2515d524494a4a891ecf1f3a20535,
         type: 3}
       propertyPath: myShootFx
