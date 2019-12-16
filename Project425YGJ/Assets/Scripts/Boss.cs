@@ -13,6 +13,9 @@ public class Boss : MonoBehaviour
     public bool stageTwoIsDone = false;
     public bool stageThreeIsDone = false;
 
+    public bool doneSlamming = true;
+    public bool damagedOnce = false;
+
     GameObject p = null;
     Vector2 startPoint;
     Health myHealth;
@@ -48,19 +51,26 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        if (behavior != null)
+        {
+            behavior.run();
+        }
+        else
+        {
+            BuildBehaviorTree();
+        }
+
+        chasePlayer();
         isBossEnraged();
         stageStatus();
-        chasePlayer();
         checkTimers();
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            StartSlam();
-        }
+        
         if (myHealth.getHealth() <= 0)
         {
             Debug.Log("Dead");
         }
-        Debug.DrawRay(transform.position-Vector3.up, Vector2.one * slamRadius, Color.red);
+       // Debug.DrawRay(transform.position-Vector3.up, Vector2.one * slamRadius, Color.red);
 
     }
 
@@ -75,18 +85,13 @@ public class Boss : MonoBehaviour
         {
             spawnEnemyCountdown();
         }
-
-        if (circleShotTimerDone)
-        {
-            ShootProjectilesInCircle(6, 3f);
-        }
     }
 
 
     public void chasePlayer()
     {
         //Debug.Log("Move towards playerrrr");
-        if (!stopChasing)
+        if (doneSlamming)
         {
             float step = 1 * Time.deltaTime;
             this.transform.position = Vector2.MoveTowards(this.transform.position, p.transform.position, step);
@@ -169,6 +174,7 @@ public class Boss : MonoBehaviour
 
     void stageStatus()
     {
+        Debug.Log("Enemy health: " + myHealth.getHealth());
         if (myHealth.getHealth() < 70 )
         {
             stageOneIsDone = true;
@@ -203,7 +209,7 @@ public class Boss : MonoBehaviour
     {
         float distAwayFromPlayer = Vector2.Distance(p.transform.position, this.transform.position);
 
-        if (distAwayFromPlayer > 3.0f)
+        if (distAwayFromPlayer > 4.0f)
         {
             return false;
         }
@@ -223,6 +229,7 @@ public class Boss : MonoBehaviour
      */
     public void StartSlam()
     {
+        doneSlamming = false;
         StartCoroutine(SlamCoroutine());
     }
 
@@ -233,6 +240,23 @@ public class Boss : MonoBehaviour
         Debug.Log(dir.normalized * explosionForce);
 
         body.AddForce(dir.normalized * explosionForce);
+    }
+
+    public bool insideCircle()
+    {
+        Vector2 position = this.transform.position;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(position - Vector2.up, slamRadius); // 2 is radius of effect for slam
+        foreach (Collider2D hit in colliders)
+        {
+            if (hit.gameObject.tag == "Player")
+            {
+                Debug.Log("Player in circle");
+                return true;
+            }
+
+        }
+
+        return false;
     }
 
     void EndSlam()
@@ -250,12 +274,16 @@ public class Boss : MonoBehaviour
             }
 
             Health objectHealth = hit.gameObject.GetComponent<Health>();
-            if (objectHealth != null && !hit.gameObject.GetComponent<Boss>())
+            if (objectHealth != null && !hit.gameObject.GetComponent<Boss>() && !damagedOnce)
             {
                 objectHealth.subtractHealth(1);
+                damagedOnce = true;
             }
 
         }
+
+        damagedOnce = false;
+        doneSlamming = true;
         //GameObject bombexplosion = Instantiate(explosionRemains, position, Quaternion.Euler(0, 0, Random.Range(0, 2) == 1 ? 0 : 180));
     }
 
@@ -464,6 +492,7 @@ public class Enraged : MyTaskNode
 
     public override bool run()
     {
+        Debug.Log("Is enraged: " + e.isEnraged);
         return e.isEnraged;
     }
 }
@@ -542,7 +571,8 @@ public class PlayerNearBossNode : MyTaskNode
 
     public override bool run()
     {
-        return e.isPlayerNear();
+        //return e.isPlayerNear();
+        return e.insideCircle();
     }
 }
 
@@ -557,7 +587,10 @@ public class BodySlamNode : MyTaskNode
 
     public override bool run()
     {
-        e.StartSlam();
+        if (e.doneSlamming)
+        {
+            e.StartSlam();
+        }
         return true;
     }
 }
@@ -574,7 +607,7 @@ public class ShootAtPlayerBossNode : MyTaskNode
     public override bool run()
     {
         GameObject player = GameObject.Find("Player");
-        e.ShootProjectileAtObject(player, 3f);
+        e.ShootProjectileAtObject(player, 2.5f);
         return true;
     }
 }

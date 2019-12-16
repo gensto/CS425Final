@@ -51,6 +51,7 @@ public class Bullet : MonoBehaviour
 
         if (collision.gameObject.tag == "Boss")
         {
+            Debug.Log("hitting boss rn");
             if (objectHealth != null)
             {
                 objectHealth.subtractHealth(bossHealthAffect);
