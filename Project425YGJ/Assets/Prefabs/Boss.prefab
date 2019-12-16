@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9217766209791881023}
   - component: {fileID: 9190361313109580335}
   - component: {fileID: 7887267320626246137}
+  - component: {fileID: 95676520223877382}
   m_Layer: 9
   m_Name: Boss
   m_TagString: Enemy
@@ -96,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5
-  maxHealth: 4
+  maxHealth: 100
   deathSound: {fileID: 8300000, guid: a51f03a5f1c93c0439f765b8c6ad86a1, type: 3}
   hitSound: {fileID: 8300000, guid: d7ce05bcfa7727b409adc49549c50d85, type: 3}
   deathObject: {fileID: 0}
@@ -254,3 +255,31 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   Enemy1: {fileID: 4280742585863161223, guid: e1b498268d8b84ef1ad52ea42c356423, type: 3}
+  isEnraged: 0
+  stageOneIsDone: 0
+  stageTwoIsDone: 0
+  stageThreeIsDone: 0
+  circleShotTimerDone: 0
+  spawnEnemyTimerDone: 0
+  shoot: {fileID: 0}
+  shootCircle: {fileID: 0}
+  projectile: {fileID: 0}
+--- !u!95 &95676520223877382
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4915494788117548540}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0eadf5d0f8540423f8d4753dffcc28f7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
