@@ -113,10 +113,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 4
   maxHealth: 4
-  myHitDeathFx: {fileID: 82074400317825508}
   deathSound: {fileID: 8300000, guid: d57f4c4e97a0ebf4a96524b7f2ec42a8, type: 3}
   hitSound: {fileID: 8300000, guid: d7ce05bcfa7727b409adc49549c50d85, type: 3}
-  testFx: {fileID: 5369080573908913927, guid: d0c3ac82338e29448ab9fecd1b682d24, type: 3}
+  deathObject: {fileID: 0}
   flashTime: 0.1
   mRenderer: {fileID: 0}
 --- !u!50 &50398603813545796
@@ -155,7 +154,7 @@ PolygonCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.21, y: 0.089999996, z: 0.06, w: 0.099999994}
+    border: {x: 0.042000003, y: 0.018000001, z: 0.012, w: 0.020000001}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
@@ -165,13 +164,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.11, y: -0.32}
-      - {x: -0.3038102, y: -0.01233448}
-      - {x: -0.22, y: 0.39}
-      - {x: 0.12, y: 0.37}
-      - {x: 0.29999998, y: 0.17999999}
-      - {x: 0.41, y: -0.07}
-      - {x: 0.34, y: -0.39999998}
+    - - {x: -0.11000001, y: 0.32200003}
+      - {x: -0.358, y: 0.096}
+      - {x: -0.36400002, y: -0.136}
+      - {x: -0.21400002, y: -0.34800002}
+      - {x: 0.016, y: -0.34800002}
+      - {x: 0.30400002, y: -0.254}
+      - {x: 0.388, y: -0.048}
+      - {x: 0.388, y: 0.312}
+      - {x: 0.386, y: 0.32200003}
 --- !u!82 &82074400317825508
 AudioSource:
   m_ObjectHideFlags: 0
