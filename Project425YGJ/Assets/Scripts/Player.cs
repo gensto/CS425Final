@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -31,7 +32,7 @@ public class Player : MonoBehaviour
 
     //Animator paramaters
 
-
+    bool isDead = false;
 
     // Bullet Variables
     [SerializeField]
@@ -56,9 +57,12 @@ public class Player : MonoBehaviour
         HandleShooting();
 
 
-        if (myHealth.getHealth() <= 0)
+        if (myHealth.getHealth() <= 0 && !isDead)
         {
             Debug.Log("Dead");
+            isDead = true;
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
         }
 
 
