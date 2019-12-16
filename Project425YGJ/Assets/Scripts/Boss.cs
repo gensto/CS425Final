@@ -52,7 +52,10 @@ public class Boss : MonoBehaviour
     private AudioClip rage2;
     [SerializeField]
     private AudioClip rage3;
-
+    [SerializeField]
+    GameObject crack;
+    [SerializeField]
+    GameObject crackSpawnPoint;
     public void Rage1()
     {
         //myShootFx.volume = 0.2f;
@@ -343,7 +346,7 @@ public class Boss : MonoBehaviour
 
         damagedOnce = false;
         doneSlamming = true;
-        //GameObject bombexplosion = Instantiate(explosionRemains, position, Quaternion.Euler(0, 0, Random.Range(0, 2) == 1 ? 0 : 180));
+        GameObject leftover = Instantiate(crack, crackSpawnPoint.transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
     }
 
 
