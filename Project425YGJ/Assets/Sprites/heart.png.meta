@@ -88,10 +88,10 @@ TextureImporter:
       name: heart
       rect:
         serializedVersion: 2
-        x: 116
-        y: 114
-        width: 267
-        height: 212
+        x: 83
+        y: 146
+        width: 316
+        height: 294
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
