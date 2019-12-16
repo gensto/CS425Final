@@ -24,6 +24,8 @@ public class Boss : MonoBehaviour
     double fireRate = 0.4;
     double nextFire = 0.0;
     float radius;
+    [SerializeField]
+    float slamRadius = 2;
     bool stopChasing = true;
     float stopChasingTimer = 1.0f;
     bool currentlySlamming = false;
@@ -50,13 +52,16 @@ public class Boss : MonoBehaviour
         stageStatus();
         chasePlayer();
         checkTimers();
-
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            StartSlam();
+        }
         if (myHealth.getHealth() <= 0)
         {
             Debug.Log("Dead");
         }
+        Debug.DrawRay(transform.position-Vector3.up, Vector2.one * slamRadius, Color.red);
 
-        Slam();
     }
 
     public void checkTimers()
@@ -206,11 +211,55 @@ public class Boss : MonoBehaviour
         return true;
     }
 
-    public void Slam()
+    IEnumerator SlamCoroutine()
     {
-        Debug.Log("Slamming");
-        transform.position = new Vector3(transform.position.x, slamCurve.Evaluate((Time.time % slamCurve.length)), transform.position.z);
+        GetComponent<Animator>().SetTrigger("DoSlam");
+        yield return new WaitForSeconds(1.12f);
+        EndSlam();
     }
+
+    /**
+     * CALL THIS
+     */
+    public void StartSlam()
+    {
+        StartCoroutine(SlamCoroutine());
+    }
+
+    public void AddExplosionForce(Rigidbody2D body, float explosionForce, Vector3 explosionPosition, float explosionRadius)
+    {
+        var dir = (body.transform.position - Vector3.up - explosionPosition);
+        float wearoff = 1 - (dir.magnitude / explosionRadius);
+        Debug.Log(dir.normalized * explosionForce);
+
+        body.AddForce(dir.normalized * explosionForce);
+    }
+
+    void EndSlam()
+    {
+        Vector2 position = this.transform.position;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(position - Vector2.up, slamRadius); // 2 is radius of effect for slam
+        foreach (Collider2D hit in colliders)
+        {
+            Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
+
+            if (rb != null)
+            {
+                Debug.Log(hit.transform.name);
+                AddExplosionForce(rb, 1000, position, slamRadius);
+            }
+
+            Health objectHealth = hit.gameObject.GetComponent<Health>();
+            if (objectHealth != null && !hit.gameObject.GetComponent<Boss>())
+            {
+                objectHealth.subtractHealth(1);
+            }
+
+        }
+        //GameObject bombexplosion = Instantiate(explosionRemains, position, Quaternion.Euler(0, 0, Random.Range(0, 2) == 1 ? 0 : 180));
+    }
+
+
 
     public void SpawnDustStorms()
     {
@@ -508,7 +557,7 @@ public class BodySlamNode : MyTaskNode
 
     public override bool run()
     {
-        e.Slam();
+        e.StartSlam();
         return true;
     }
 }
