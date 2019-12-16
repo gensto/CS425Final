@@ -88,7 +88,7 @@ public class Bomb : MonoBehaviour
                 }
 
                 Health objectHealth = hit.gameObject.GetComponent<Health>();
-                if (objectHealth != null && !hit.gameObject.GetComponent<EnemyLevel3>())
+                if (objectHealth != null && !hit.gameObject.GetComponent<EnemyLevel3>() && !hit.gameObject.GetComponent<EnemyLevel2>() && !hit.gameObject.GetComponent<EnemyLevel1>())
                 {
                     objectHealth.subtractHealth(1);
                 }

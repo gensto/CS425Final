@@ -87,11 +87,14 @@ public class EnemyLevel1 : MonoBehaviour
 
     public bool isPlayerNear()
     {
-        float distAwayFromPlayer = Vector2.Distance(p.transform.position, this.transform.position);
-
-        if(distAwayFromPlayer > 4.0f)
+        if (p != null)
         {
-            return false;
+            float distAwayFromPlayer = Vector2.Distance(p.transform.position, this.transform.position);
+
+            if (distAwayFromPlayer > 4.0f)
+            {
+                return false;
+            }
         }
 
         return true;
