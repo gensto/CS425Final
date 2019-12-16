@@ -13,6 +13,11 @@ public class Boss : MonoBehaviour
     public bool stageTwoIsDone = false;
     public bool stageThreeIsDone = false;
 
+    //Makes sure he only becomes enraged once per phase
+    public bool phaseOneEnraged = false;
+    public bool phaseTwoEnraged = false;
+    public bool phaseThreeEnraged = false;
+
     public bool doneSlamming = true;
     public bool damagedOnce = false;
 
@@ -37,6 +42,41 @@ public class Boss : MonoBehaviour
     private AudioClip shoot;
     [SerializeField]
     private AudioClip shootCircle;
+
+    [SerializeField]
+    private AudioClip slam;
+
+    [SerializeField]
+    private AudioClip rage1;
+    [SerializeField]
+    private AudioClip rage2;
+    [SerializeField]
+    private AudioClip rage3;
+
+    public void Rage1()
+    {
+        //myShootFx.volume = 0.2f;
+        AudioSource.PlayClipAtPoint(rage1, transform.position);
+    }
+
+    public void Rage2()
+    {
+        //myShootFx.volume = 0.2f;
+        AudioSource.PlayClipAtPoint(rage2, transform.position);
+    }
+
+    public void Rage3()
+    {
+        //myShootFx.volume = 0.2f;
+        AudioSource.PlayClipAtPoint(rage3, transform.position);
+    }
+
+    public void SlamSound()
+    {
+        //myShootFx.volume = 0.2f;
+        AudioSource.PlayClipAtPoint(slam, transform.position);
+    }
+
     [SerializeField]
     GameObject projectile;
     // Start is called before the first frame update
@@ -128,7 +168,7 @@ public class Boss : MonoBehaviour
         if (Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
-            Rigidbody2D bullet = Instantiate(projectile, transform.position + Vector3.up, transform.rotation).GetComponent<Rigidbody2D>();
+            Rigidbody2D bullet = Instantiate(projectile, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
             bullet.velocity = (_target.transform.position - bullet.transform.position).normalized * speed;
             ShootSound();
         }
@@ -139,6 +179,8 @@ public class Boss : MonoBehaviour
         //myShootFx.volume = 0.2f;
         AudioSource.PlayClipAtPoint(shoot, transform.position);
     }
+
+    
 
     public void ShootCircleSound()
     {
@@ -164,7 +206,7 @@ public class Boss : MonoBehaviour
         spawnEnemyTimer -= Time.deltaTime;
         //Debug.Log("Chasing enemy");
 
-        if (spawnEnemyTimer <= 0)
+        if (circleShotTimer <= 0)
         {
             //Debug.Log("No longer chasing");
             spawnEnemyTimerDone = true;
@@ -189,15 +231,31 @@ public class Boss : MonoBehaviour
     {
         if (myHealth.getHealth() >= 70 && myHealth.getHealth() <= 84)
         {
-            isEnraged = true;
+            if (!phaseOneEnraged)
+            {
+                isEnraged = true;
+                phaseOneEnraged = true;
+                Rage1();
+            }
+            
         }
         else if (myHealth.getHealth() >= 40 && myHealth.getHealth() <= 54)
         {
-            isEnraged = true;
+            if (!phaseTwoEnraged)
+            {
+                isEnraged = true;
+                phaseTwoEnraged = true;
+                Rage2();
+            }
         }
         else if (myHealth.getHealth() >= 0 && myHealth.getHealth() <= 16)
         {
-            isEnraged = true;
+            if (!phaseThreeEnraged)
+            {
+                isEnraged = true;
+                phaseThreeEnraged = true;
+                Rage3();
+            }
         }
         else
         {
@@ -229,6 +287,7 @@ public class Boss : MonoBehaviour
      */
     public void StartSlam()
     {
+        SlamSound();
         doneSlamming = false;
         StartCoroutine(SlamCoroutine());
     }
@@ -578,6 +637,7 @@ public class PlayerNearBossNode : MyTaskNode
 
 public class BodySlamNode : MyTaskNode
 {
+    
     Boss e = null;
 
     public BodySlamNode(Boss e)
@@ -590,6 +650,7 @@ public class BodySlamNode : MyTaskNode
         if (e.doneSlamming)
         {
             e.StartSlam();
+            //SlamSound();
         }
         return true;
     }
