@@ -34,6 +34,11 @@ public class Boss : MonoBehaviour
     bool currentlySlamming = false;
 
     [SerializeField]
+    GameObject crack;
+    [SerializeField]
+    GameObject crackSpawnPoint;
+
+    [SerializeField]
     private AudioClip shoot;
     [SerializeField]
     private AudioClip shootCircle;
@@ -284,7 +289,7 @@ public class Boss : MonoBehaviour
 
         damagedOnce = false;
         doneSlamming = true;
-        //GameObject bombexplosion = Instantiate(explosionRemains, position, Quaternion.Euler(0, 0, Random.Range(0, 2) == 1 ? 0 : 180));
+        GameObject leftover = Instantiate(crack, crackSpawnPoint.transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
     }
 
 
