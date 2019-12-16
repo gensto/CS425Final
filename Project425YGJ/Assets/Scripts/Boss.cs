@@ -39,6 +39,9 @@ public class Boss : MonoBehaviour
     bool currentlySlamming = false;
 
     [SerializeField]
+    GameObject enemies;
+
+    [SerializeField]
     private AudioClip shoot;
     [SerializeField]
     private AudioClip shootCircle;
@@ -85,6 +88,7 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        enemies = GameObject.Find("Enemies");
         radius = 20f;
         p = GameObject.Find("Player");
         myHealth = GetComponent<Health>();
@@ -209,7 +213,7 @@ public class Boss : MonoBehaviour
         spawnEnemyTimer -= Time.deltaTime;
         //Debug.Log("Chasing enemy");
 
-        if (circleShotTimer <= 0)
+        if (spawnEnemyTimer <= 0)
         {
             //Debug.Log("No longer chasing");
             spawnEnemyTimerDone = true;
@@ -363,10 +367,12 @@ public class Boss : MonoBehaviour
         Vector2 pos3 = transform.position;
         pos3.x += 1;
         pos3.y -= 1;
-        GameObject dustStorm = Instantiate(Enemy1, pos, gameObject.transform.rotation);
-        GameObject dustStorm2 = Instantiate(Enemy1, pos2, gameObject.transform.rotation);
-        GameObject dustStorm3 = Instantiate(Enemy1, pos3, gameObject.transform.rotation);
-
+        if (enemies.transform.childCount < 3)
+        {
+            GameObject dustStorm = Instantiate(Enemy1, pos, gameObject.transform.rotation, enemies.transform);
+            GameObject dustStorm2 = Instantiate(Enemy1, pos2, gameObject.transform.rotation, enemies.transform);
+            GameObject dustStorm3 = Instantiate(Enemy1, pos3, gameObject.transform.rotation, enemies.transform);
+        }
     }
 
     public int getBossCurrHealth()
